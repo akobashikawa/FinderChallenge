@@ -5,6 +5,11 @@
   max-width: 960px;
   margin: 0 auto;
 }
+content .card .card-image {
+  background: #ccc;
+  height: 150px;
+  width: 150px;
+}
 .search-form {
   margin-top: 30px;
 }
