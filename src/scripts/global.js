@@ -17,6 +17,24 @@ var loadJSON = function(url, callback){
             var content = JSON.parse(xobj.responseText);
             callback.call(this, content);
         }
+        console.log(111);
     };
     xobj.send(null);
 };
+
+// loadJSON(JSON_FILE); // for some reason returns 404
+
+var $cardTemplate = $('.card-template')
+    .clone()
+    .removeClass('card-template')
+    .addClass('card');
+$.getJSON('books-schema.json', function(json) {
+    var results = json.data.map(function(v, i) {
+        var $card = $cardTemplate
+            .clone()
+            .find('.card-image').attr({'src': v.image, 'title': v.title}).end()
+            .find('.card-title').html(v.title).end()
+            .find('.card-teaser').html(v.teaser).end()
+            .appendTo('.cards');
+    });
+});

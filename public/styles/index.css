@@ -5,6 +5,9 @@
   max-width: 960px;
   margin: 0 auto;
 }
+content .card-template {
+  display: none;
+}
 content .card .card-image {
   background: #ccc;
   height: 150px;
