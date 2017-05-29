@@ -28,13 +28,18 @@ var $cardTemplate = $('.card-template')
     .clone()
     .removeClass('card-template')
     .addClass('card');
+
+function addCardFor(v, $cardTemplate) {
+    $cardTemplate
+        .clone()
+        .find('.card-image').attr({'src': v.image, 'title': v.title}).end()
+        .find('.card-title').html(v.title).end()
+        .find('.card-teaser').html(v.teaser).end()
+        .appendTo('.cards');
+}
+
 $.getJSON('books-schema.json', function(json) {
     var results = json.data.map(function(v, i) {
-        var $card = $cardTemplate
-            .clone()
-            .find('.card-image').attr({'src': v.image, 'title': v.title}).end()
-            .find('.card-title').html(v.title).end()
-            .find('.card-teaser').html(v.teaser).end()
-            .appendTo('.cards');
+        addCardFor(v, $cardTemplate);
     });
 });

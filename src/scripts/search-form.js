@@ -7,10 +7,13 @@ $('.search-form').on('submit', function(event) {
     }
     console.log('search string ok');
     $.getJSON('books-schema.json', function(json) {
-        var results = json.data.filter(function(item) {
+        $('.cards .card').remove();
+        json.data
+        .filter(function(item) {
             return item.title.indexOf(q) !== -1;
+        }).map(function(v, i) {
+            addCardFor(v, $cardTemplate);
         });
-        console.log(results);
     });
 });
 
