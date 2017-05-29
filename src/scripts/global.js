@@ -24,12 +24,24 @@ var loadJSON = function(url, callback){
 
 // loadJSON(JSON_FILE); // for some reason returns 404
 
+var $categoryTemplate = $('.category-template')
+    .clone()
+    .removeClass('category-template')
+    .addClass('category');
+
+function addCategoryFor(v) {
+    $categoryTemplate
+        .clone()
+        .find('.title-link').html(v.title).end()
+        .appendTo('.categories');
+}
+
 var $cardTemplate = $('.card-template')
     .clone()
     .removeClass('card-template')
     .addClass('card');
 
-function addCardFor(v, $cardTemplate) {
+function addCardFor(v) {
     $cardTemplate
         .clone()
         .find('.card-image').attr({'src': v.image, 'title': v.title}).end()
@@ -39,7 +51,15 @@ function addCardFor(v, $cardTemplate) {
 }
 
 $.getJSON('books-schema.json', function(json) {
-    var results = json.data.map(function(v, i) {
-        addCardFor(v, $cardTemplate);
+    // categories
+    var categories = Object.keys(json.entities.categories[0]).map(function(key) {
+        return json.entities.categories[0][key];
+    }).map(function(v) {
+        addCategoryFor(v);
+    });
+
+    // cards
+    json.data.map(function(v) {
+        addCardFor(v);
     });
 });

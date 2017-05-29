@@ -8,10 +8,8 @@
 content .card-template {
   display: none;
 }
-content .card .card-image {
-  background: #ccc;
-  height: 150px;
-  width: 150px;
+content .category-template {
+  display: none;
 }
 .search-form {
   margin-top: 30px;

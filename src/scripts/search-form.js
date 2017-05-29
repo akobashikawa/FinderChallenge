@@ -12,7 +12,7 @@ $('.search-form').on('submit', function(event) {
         .filter(function(item) {
             return item.title.indexOf(q) !== -1;
         }).map(function(v, i) {
-            addCardFor(v, $cardTemplate);
+            addCardFor(v);
         });
     });
 });
